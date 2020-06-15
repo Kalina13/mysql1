@@ -1,0 +1,279 @@
+#MySQL 5.7.12
+#please drop objects you've created at the end of the script 
+#or check for their existance before creating
+#'\\' is a delimiter
+
+#MySQL 5.7.12
+#please drop objects you've created at the end of the script 
+#or check for their existance before creating
+#'\\' is a delimiter
+
+set foreign_key_checks=0;
+
+DROP TABLE IF EXISTS VR_Base_Brand;
+DROP TABLE IF EXISTS VR_Base_Type;
+DROP TABLE IF EXISTS VR_Base_Vt;
+DROP TABLE IF EXISTS VR_Project;
+DROP TABLE IF EXISTS VR_Base_Stime;
+DROP TABLE IF EXISTS VR_Base_Koeff;
+DROP TABLE IF EXISTS VR_Base_Vost;
+DROP TABLE IF EXISTS VR_Base_Srok;
+DROP TABLE IF EXISTS VR_Base_Ver;
+DROP TABLE IF EXISTS VR_Base_YesNo;
+DROP TABLE IF EXISTS VR_Base_Dashcam;
+
+CREATE TABLE VR_Base_Brand (
+    VR_Base_Brand_id INT(5),
+    VR_Base_Brand_name VARCHAR(20),
+    PRIMARY KEY (VR_Base_Brand_id)
+    );
+
+CREATE TABLE VR_Base_Type (
+    VR_Base_Type_id INT(5),
+    VR_Base_Type_name VARCHAR(5),
+    PRIMARY KEY (VR_Base_Type_id)
+    );
+
+CREATE TABLE VR_Base_Vt (
+    VR_Base_Vt_id INT(5),
+    VR_Base_Vt_name VARCHAR(15),
+    PRIMARY KEY (VR_Base_Vt_id)
+    );
+
+CREATE TABLE VR_Project (
+    VR_Project_id INT(5),
+    VR_Project_name VARCHAR(15),
+    PRIMARY KEY (VR_Project_id)
+    );
+    
+CREATE TABLE VR_Base_Stime (
+VR_Base_Stime_id INT(5),
+VR_Base_Stime_name VARCHAR(10),
+PRIMARY KEY (VR_Base_Stime_id)
+);
+
+CREATE TABLE VR_Base_Koeff (
+VR_Base_Koeff_id INT(4),
+VR_Base_Koeff_name VARCHAR(30),
+PRIMARY KEY (VR_Base_Koeff_id)
+);
+
+CREATE TABLE VR_Base_Vost (
+VR_Base_Vost_id INT(6),
+VR_Base_Vost_name VARCHAR (30),
+PRIMARY KEY (VR_Base_Vost_id)
+);
+
+CREATE TABLE VR_Base_Srok (
+VR_Base_Srok_id INT(4),
+VR_Base_Srok_name VARCHAR (30),
+PRIMARY KEY (VR_Base_Srok_id)
+);
+
+CREATE TABLE VR_Base_Ver (
+VR_Base_Ver_id INT(5),
+VR_Base_Ver_name VARCHAR (30),
+PRIMARY KEY (VR_Base_Ver_id)
+);
+
+CREATE TABLE VR_Base_YesNo (
+    VR_Base_YesNo_id INT(1),
+    VR_Base_YesNo_name VARCHAR(15),
+    PRIMARY KEY (VR_Base_YesNo_id)
+    );
+
+CREATE TABLE VR_Base_Dashcam (
+    VR_Base_D_name  VARCHAR(100), 
+    VR_Base_D_brand INT(5),
+    VR_Base_D_Type     INT(1),
+    VR_Base_D_Vt     INT(1),
+    VR_Base_D_stime INT(1),
+    VR_Base_D_koeff INT(1),
+    VR_Base_D_vost INT(1),
+    VR_Base_D_srok INT(1),
+    VR_Base_D_ver INT(1),
+    VR_Base_D_resolution INT(1),
+    VR_Base_D_sensordic  INT(1),
+    VR_Base_D_sensors    INT(1),
+    VR_Base_D_sensordvi INT(1),
+    VR_Base_D_sensoreco  INT(1),
+    VR_Base_D_3d    INT(1),
+    INDEX(VR_Base_D_name),
+    VR_Base_D_price DECIMAL(10,2),
+PRIMARY KEY (VR_Base_D_name),
+FOREIGN KEY (VR_Base_D_brand) REFERENCES VR_Base_Brand(VR_Base_Brand_id),
+FOREIGN KEY (VR_Base_D_Type) REFERENCES VR_Base_Type(VR_Base_Type_id),
+FOREIGN KEY (VR_Base_D_Vt) REFERENCES VR_Base_Vt(VR_Base_Vt_id),
+FOREIGN KEY (VR_Base_D_resolution) REFERENCES VR_Project(VR_Project_id),
+FOREIGN KEY (VR_Base_D_stime) REFERENCES VR_Base_Stime(VR_Base_Stime_id),
+FOREIGN KEY (VR_Base_D_koeff) REFERENCES VR_Base_Koeff(VR_Base_Koeff_id),
+FOREIGN KEY (VR_Base_D_vost) REFERENCES VR_Base_Vost(VR_Base_Vost_id),
+FOREIGN KEY (VR_Base_D_srok) REFERENCES VR_Base_Srok(VR_Base_Srok_id),
+FOREIGN KEY (VR_Base_D_ver) REFERENCES VR_Base_Ver(VR_Base_Ver_id),
+FOREIGN KEY (VR_Base_D_sensordic) REFERENCES VR_Base_YesNo(VR_Base_YesNo_id),
+FOREIGN KEY (VR_Base_D_sensors) REFERENCES VR_Base_YesNo(VR_Base_YesNo_id),
+ FOREIGN KEY (VR_Base_D_sensordvi) REFERENCES VR_Base_YesNo(VR_Base_YesNo_id),
+FOREIGN KEY (VR_Base_D_sensoreco) REFERENCES VR_Base_YesNo(VR_Base_YesNo_id),
+FOREIGN KEY (VR_Base_D_3d) REFERENCES VR_Base_YesNo(VR_Base_YesNo_id)
+       );
+set foreign_key_checks=1;
+
+INSERT INTO VR_Base_Brand (VR_Base_Brand_id, VR_Base_Brand_name)
+VALUES  (0, 'Promethean'),
+        (1, 'Acer'), 
+        (2, 'Benq'), 
+        (3, 'NEC');
+
+INSERT INTO VR_Base_Type (VR_Base_Type_id, VR_Base_Type_name)
+VALUES  (0, 'UHP'),
+        (1, 'DC'), 
+        (2, 'AC'), 
+        (3, 'NSH');
+        
+INSERT INTO VR_Base_Vt (VR_Base_Vt_id, VR_Base_Vt_name)
+VALUES  (0, '230 Вт'),
+        (1, '240 Вт'), 
+        (2, '190 Вт'), 
+        (3, '205 Вт'),
+        (4, '200 Вт'),
+        (5, '220 Вт');
+        
+INSERT INTO VR_Project (VR_Project_id, VR_Project_name)
+VALUES  (0, '1280×800'),
+        (1, '800×600'), 
+        (2, '1024×768');
+        
+INSERT INTO VR_Base_Stime (VR_Base_Stime_id, VR_Base_Stime_name)
+VALUES (0, '3000'),
+(1, '2100'),
+(2, '2600'),
+(3, '2500'),
+(4, '1700'),
+(5, '900'),
+(6, '1200'),
+(7,'600'),
+(8,'1600'),
+(9,'1800');
+      
+INSERT INTO VR_Base_Koeff (VR_Base_Koeff_id, VR_Base_Koeff_name)
+VALUES (0, '0,9993'),
+(1, '0,9971'),
+(2, '0,9984'),
+(3, '0,9980'),
+(4,'0,9958'),
+(5,'0,9990'),
+(6,'0,9942'),
+(7,'0,9836'),
+(8,'0,9962'),
+(9,'0,9972');
+
+INSERT INTO VR_Base_Vost (VR_Base_Vost_id, VR_Base_Vost_name)
+VALUES (0, '2'),
+(1, '6'),
+(2, '4'),
+(3, '5'),
+(4, '7'),
+(5, '10');
+
+INSERT INTO VR_Base_Srok (VR_Base_Srok_id, VR_Base_Srok_name)
+VALUES (0, ' 6000'),
+(1, ' 3500'),
+(2, ' 4500'),
+(3, ' 4000'),
+(4, '2000'),
+(5, '3000'),
+(6, '1500');
+
+INSERT INTO VR_Base_Ver (VR_Base_Ver_id, VR_Base_Ver_name)
+VALUES (0, '0.0001 '),
+(1, '0.0002'),
+(2, '0.0003'),
+(3, '0.0004'),
+(4, '0.0005'),
+(5, '0.0006'),
+(6,'0.0007');
+         
+INSERT INTO VR_Base_YesNo (VR_Base_YesNo_id, VR_Base_YesNo_name)
+        VALUES  (0, 'Нет'),
+        (1, 'Да'), 
+        (2, 'Неизвестно');
+
+INSERT INTO VR_Base_Dashcam (VR_Base_D_name, VR_Base_D_brand, VR_Base_D_Type, VR_Base_D_Vt, VR_Base_D_resolution, VR_Base_D_stime, VR_Base_D_koeff, VR_Base_D_vost, VR_Base_D_srok, VR_Base_D_ver, VR_Base_D_sensordic, VR_Base_D_sensors, VR_Base_D_sensordvi, VR_Base_D_sensoreco, VR_Base_D_3d, VR_Base_D_price)
+VALUE   ('UST-P2',                       0,  0,  0,  0, 0,0,0,0,0,0, 0,  0,  1,  1,  106183), 
+        ('PRM-45A',                              0,  0,  1,  0,1,1,1,1,2,0,   1,  0,  1,  1,  148620),
+        ('UST-P1',         0,  0,  0,  0, 2,2,2,1,0,0,0,  0,  1,  1,  154290),
+        ('Acer X1110',                              1,  0,  2,  1,3,3,3,2,1,0,   1,  0,  1,  1,  23811),
+        ('BENQ MS506 DLP',         2,  0,  2,  1,4,4,4,3,4, 1,   1,  0,  1,  1,  21749),
+        ('VT460K',                  3,  1,  3,  1,5,5,5, 4,6, 1,   1,  0,  1,  0,  42073),
+        ('VT770',                              3,  2,  4,  2,6,6,4,5,5,  1,   1,  0,  1,  0,  7484),
+        ('LT220',                              3,  3,  5,  1, 7,7,5,6,6, 1,  1,  0,  1,  0,  4347),
+        ('HT1100',                       3,  3,  5,  2, 8,8,1,5,3, 1,  1,  1,  1,  0,  98060),
+        ('WT600',                            3,  1,  5,  2, 9, 9,3,5,2, 1,  1,  1,  1,  0,  150039);  
+
+
+-- output        	
+-- SELECT * FROM VR_Base_Dashcam;
+SELECT * FROM VR_Base_Brand;
+SELECT * FROM VR_Base_Type;
+SELECT * FROM VR_Base_Vt;
+SELECT * FROM VR_Project;
+SELECT * FROM VR_Base_Stime;
+SELECT * FROM VR_Base_Koeff;
+SELECT * FROM VR_Base_Vost;
+SELECT * FROM VR_Base_Srok;
+SELECT * FROM VR_Base_Ver;
+SELECT * FROM VR_Base_YesNo;
+
+SELECT VR_Base_D_name AS 'Наименование',
+       brand.VR_Base_Brand_name           AS 'Бренд',
+       Type.VR_Base_Type_name         AS 'Тип Лампы',
+       Vt.VR_Base_Vt_name         AS 'Мощность лампы',
+       resolution.VR_Project_name AS 'Разрешение проекции',
+       stime.VR_Base_Stime_name AS 'Среднее время наработки на отказ (часов)',
+       koeff.VR_Base_Koeff_name AS 'Коэф-фициент готов-ности (техни-ческого использо-вания)',
+       vost.VR_Base_Vost_name AS 'Среднее время восстанов-ления (часов)',
+       srok.VR_Base_Srok_name AS 'Средний срок службы (часов)',
+       ver.VR_Base_Ver_name AS 'Вероятность появления необнаруженных ошибок ',
+       sensordic.VR_Base_YesNo_name       AS 'Динамик',
+       sensors.VR_Base_YesNo_name         AS 'S-video',
+       sensordvi.VR_Base_YesNo_name      AS 'DVI',
+       sensoreco.VR_Base_YesNo_name       AS 'ECO',
+       3d.VR_Base_YesNo_name         AS '3D',
+       VR_Base_D_price                    AS 'Цена'
+
+FROM   VR_Base_Dashcam AS dashcam
+
+INNER JOIN  VR_Base_Brand      AS brand       ON brand.VR_Base_Brand_id           = dashcam.VR_Base_D_brand
+INNER JOIN  VR_Base_Type     AS Type      ON Type.VR_Base_Type_id         = dashcam.VR_Base_D_Type
+INNER JOIN  VR_Base_Vt     AS Vt      ON Vt.VR_Base_Vt_id         = dashcam.VR_Base_D_Vt
+INNER JOIN  VR_Project AS resolution  ON resolution.VR_Project_id = dashcam.VR_Base_D_resolution
+INNER JOIN VR_Base_Stime AS stime ON stime.VR_Base_Stime_id = dashcam.VR_Base_D_stime
+INNER JOIN VR_Base_Koeff AS koeff ON koeff.VR_Base_Koeff_id = dashcam.VR_Base_D_koeff
+INNER JOIN VR_Base_Vost AS vost ON vost.VR_Base_Vost_id = dashcam.VR_Base_D_vost
+INNER JOIN VR_Base_Srok AS srok ON srok.VR_Base_srok_id = dashcam.VR_Base_D_srok
+INNER JOIN VR_Base_Ver AS ver ON ver.VR_Base_Ver_id = dashcam.VR_Base_D_ver
+INNER JOIN  VR_Base_YesNo      AS sensordic   ON sensordic.VR_Base_YesNo_id       = dashcam.VR_Base_D_sensordic
+INNER JOIN  VR_Base_YesNo      AS sensors     ON sensors.VR_Base_YesNo_id         = dashcam.VR_Base_D_sensors
+INNER JOIN  VR_Base_YesNo      AS sensordvi  ON sensordvi.VR_Base_YesNo_id      = dashcam.VR_Base_D_sensordvi
+INNER JOIN  VR_Base_YesNo      AS sensoreco   ON sensoreco.VR_Base_YesNo_id       = dashcam.VR_Base_D_sensoreco
+INNER JOIN  VR_Base_YesNo      AS 3d     ON 3d.VR_Base_YesNo_id         = dashcam.VR_Base_D_3d;
+
+
+SELECT VR_Base_D_name AS 'Наименование',
+        brand.VR_Base_Brand_name           AS 'Бренд',
+       stime.VR_Base_Stime_name AS 'Среднее время наработки на отказ (часов)',
+       koeff.VR_Base_Koeff_name AS 'Коэф-фициент готов-ности (техни-ческого использо-вания)',
+       vost.VR_Base_Vost_name AS 'Среднее время восстанов-ления (часов)',
+       srok.VR_Base_Srok_name AS 'Средний срок службы (часов)',
+       ver.VR_Base_Ver_name AS 'Вероятность появления необнаруженных ошибок '
+       
+FROM   VR_Base_Dashcam AS dashcam
+
+INNER JOIN  VR_Base_Brand      AS brand       ON brand.VR_Base_Brand_id           = dashcam.VR_Base_D_brand
+INNER JOIN  VR_Base_Type     AS Type      ON Type.VR_Base_Type_id         = dashcam.VR_Base_D_Type
+INNER JOIN VR_Base_Stime AS stime ON stime.VR_Base_Stime_id = dashcam.VR_Base_D_stime
+INNER JOIN VR_Base_Koeff AS koeff ON koeff.VR_Base_Koeff_id = dashcam.VR_Base_D_koeff
+INNER JOIN VR_Base_Vost AS vost ON vost.VR_Base_Vost_id = dashcam.VR_Base_D_vost
+INNER JOIN VR_Base_Srok AS srok ON srok.VR_Base_srok_id = dashcam.VR_Base_D_srok
+INNER JOIN VR_Base_Ver AS ver ON ver.VR_Base_Ver_id = dashcam.VR_Base_D_ver;
+
